@@ -94,6 +94,8 @@ WORKDIR /workspace
 # Install Rust for the correct CPU architecture
 RUN apk add --no-cache wget && \
     wget -qO- https://sh.rustup.rs | sh -s -- -q -y
+# Install gcc required by Rust
+RUN apk add --no-cache gcc
 
 # Shell setup
 COPY shell/.zshrc-specific shell/.welcome.sh /root/
