@@ -8,7 +8,7 @@
     "workspaceFolder": "/workspace",
     // "overrideCommand": "",
     "extensions": [
-        "rust-lang.rust",
+        "matklad.rust-analyzer",
         "tamasfe.even-better-toml", // for Cargo.toml
         "eamodio.gitlens", // IDE Git information
         "davidanson.vscode-markdownlint",
@@ -34,6 +34,7 @@
         "remote.extensionKind": {
             "ms-azuretools.vscode-docker": "workspace"
         },
-        "editor.codeActionsOnSaveTimeout": 3000
+        "editor.codeActionsOnSaveTimeout": 3000,
+        "rust-analyzer.serverPath": "/usr/local/bin/rust-analyzer"
     }
 }

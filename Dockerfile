@@ -98,6 +98,12 @@ ENV PATH=/root/.cargo/bin:${PATH}
 # Install gcc required by Rust
 RUN apk add --no-cache gcc
 
+# Install Rust tooling
+ARG RUST_ANALYZER_VERSION=2021-06-14
+RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-musl.gz" | \
+    gunzip > /usr/local/bin/rust-analyzer && \
+    chmod 500 /usr/local/bin/rust-analyzer
+
 # Shell setup
 COPY shell/.zshrc-specific shell/.welcome.sh /root/
 RUN mkdir ~/.zfunc && /root/.cargo/bin/rustup completions zsh > ~/.zfunc/_rustup
