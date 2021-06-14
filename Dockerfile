@@ -94,6 +94,7 @@ WORKDIR /workspace
 # Install Rust for the correct CPU architecture
 RUN apk add --no-cache wget && \
     wget -qO- https://sh.rustup.rs | sh -s -- -q -y
+ENV PATH=/root/.cargo/bin:${PATH}
 # Install gcc required by Rust
 RUN apk add --no-cache gcc
 
