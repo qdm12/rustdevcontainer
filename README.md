@@ -16,8 +16,7 @@
 
 ## Features
 
-- Compatible with amd64, 386 and arm64 CPU architectures
-- Relatively small: 742MB (amd64 image size)
+- Relatively small: 1.46GB (amd64 image size)
 - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
     - Based on Alpine 3.13
     - Minimal custom terminal and packages
