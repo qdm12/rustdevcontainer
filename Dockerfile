@@ -38,6 +38,7 @@ ARG RUST_ANALYZER_VERSION=2021-06-14
 RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-musl.gz" | \
     gunzip > /usr/local/bin/rust-analyzer && \
     chmod 500 /usr/local/bin/rust-analyzer
+RUN rustup component add clippy
 
 # Shell setup
 COPY shell/.zshrc-specific shell/.welcome.sh /root/

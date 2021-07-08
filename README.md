@@ -18,6 +18,7 @@
 
 - Rust 1.52.1
 - Rust Analyzer 2021-06-14
+- Clippy
 - Relatively small: 1.46GB (amd64 image size)
 - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
     - Based on Alpine 3.13
