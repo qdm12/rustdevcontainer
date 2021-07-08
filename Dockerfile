@@ -33,6 +33,8 @@ ENV PATH=/root/.cargo/bin:${PATH}
 # Install gcc required by Rust
 RUN apk add --no-cache gcc && \
     ln -s /usr/bin/gcc /usr/bin/x86_64-linux-musl-gcc
+# Install musl-dev required by some Rust tooling
+RUN apk add --no-cache musl-dev
 
 # Install Rust tooling
 ARG RUST_ANALYZER_VERSION=2021-06-14
