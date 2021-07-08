@@ -31,7 +31,8 @@ RUN apk add --no-cache wget && \
     wget -qO- https://sh.rustup.rs | sh -s -- -q -y
 ENV PATH=/root/.cargo/bin:${PATH}
 # Install gcc required by Rust
-RUN apk add --no-cache gcc
+RUN apk add --no-cache gcc && \
+    ln -s /usr/bin/gcc /usr/bin/x86_64-linux-musl-gcc
 
 # Install Rust tooling
 ARG RUST_ANALYZER_VERSION=2021-06-14
