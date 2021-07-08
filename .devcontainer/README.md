@@ -28,7 +28,7 @@ It works on Linux, Windows and OSX.
 You can make changes to the [Dockerfile](Dockerfile) and then rebuild the image. For example, your Dockerfile could be:
 
 ```Dockerfile
-FROM qmcgaw/godevcontainer
+FROM qmcgaw/rustdevcontainer
 RUN apk add curl
 ```
 
