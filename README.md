@@ -16,12 +16,13 @@
 
 ## Features
 
+- Rust 1.52.1
+- Rust Analyzer 2021-06-14
 - Relatively small: 1.46GB (amd64 image size)
 - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
     - Based on Alpine 3.13
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
-- Rust 1.52.1
 - Cross platform
     - Easily bind mount your SSH keys to use with **git**
     - Manage your host Docker from within the dev container, more details at [qmcgaw/basedevcontainer](https://github.com/qdm12/basedevcontainer#features)
@@ -30,11 +31,7 @@
 
 ## Requirements
 
-- [Docker](https://www.docker.com/products/docker-desktop) installed and running
-    - If you don't use Linux, share the directories `~/.ssh` and the directory of your project with Docker Desktop
-- [Docker Compose](https://docs.docker.com/compose/install/) installed
-- [VS code](https://code.visualstudio.com/download) installed
-- [VS code remote containers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) installed
+See [.devcontainer/README.md#Requirements](.devcontainer/README.md#Requirements)
 
 ## Setup for a project
 
@@ -49,10 +46,11 @@
     - Or manually: download this repository and put the [.devcontainer](.devcontainer) directory in your project.
 1. If you have a *.vscode/settings.json*, eventually move the settings to *.devcontainer/devcontainer.json* in the `"settings"` section as *.vscode/settings.json* take precedence over the settings defined in *.devcontainer/devcontainer.json*.
 1. Open the command palette in Visual Studio Code (CTRL+SHIFT+P) and select `Remote-Containers: Open Folder in Container...` and choose your project directory
+1. See [.devcontainer/README.md#Setup](.devcontainer/README.md#Setup)
 
 ## Customization
 
-See the [.devcontainer/README.md](.devcontainer/README.md) document in your repository.
+See [.devcontainer/README.md#Customization](.devcontainer/README.md#Customization)
 
 ## License
 
