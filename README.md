@@ -2,6 +2,8 @@
 
 **Rust development container for Visual Studio Code**
 
+![Icon](icon.svg)
+
 [![Build status](https://github.com/qdm12/rustdevcontainer/workflows/Buildx%20latest/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions?query=workflow%3A%22Buildx+latest%22)
 [![Docker Pulls](https://img.shields.io/docker/pulls/qmcgaw/rustdevcontainer.svg)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
 [![Docker Stars](https://img.shields.io/docker/stars/qmcgaw/rustdevcontainer.svg)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
