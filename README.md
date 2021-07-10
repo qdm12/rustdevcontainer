@@ -21,7 +21,7 @@
 - Clippy
 - Relatively small: 1.46GB (amd64 image size)
 - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
-    - Based on Alpine 3.13
+    - Based on Alpine 3.14
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Cross platform
