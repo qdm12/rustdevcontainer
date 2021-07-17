@@ -31,11 +31,11 @@ RUN wget -qO- https://sh.rustup.rs | sh -s -- -q -y
 
 ENV PATH=/root/.cargo/bin:${PATH}
 # Install:
-# - gcc required by Rust
+# - gcc, libc6-dev required by Rust
 # - musl-tools required for static binaries
 RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get update && \
-    apt-get -y install --no-install-recommends gcc musl-tools && \
+    apt-get -y install --no-install-recommends gcc libc6-dev musl-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN ln -s /usr/bin/gcc /usr/bin/x86_64-linux-musl-gcc
