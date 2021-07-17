@@ -41,7 +41,3 @@ jobs:
             VERSION=${{ steps.vars.outputs.alpine_version }}
           tags: qmcgaw/rustdevcontainer
           push: true
-
-      - name: Microbadger hook
-        run: curl -X POST https://hooks.microbadger.com/images/qmcgaw/rustdevcontainer/uj5yjSvXygN2m_a3MwrA6jaWZqY=
-        continue-on-error: true
