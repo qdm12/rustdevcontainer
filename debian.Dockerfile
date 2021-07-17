@@ -26,16 +26,22 @@ LABEL \
     org.opencontainers.image.description="Rust development container for Visual Studio Code Remote Containers development"
 WORKDIR /workspace
 
-# Install Rust
+# Install Rust for the correct CPU architecture
 ARG RUST_VERSION=1.53.0
 ARG RUSTUP_INIT_VERSION=1.24.3
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH
-RUN wget -qO /tmp/rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_INIT_VERSION}/x86_64-unknown-linux-gnu/rustup-init" && \
-    echo "3dc5ef50861ee18657f9db2eeb7392f9c2a6c95c90ab41e45ab4ca71476b4338  /tmp/rustup-init" | sha256sum -c - && \
+RUN arch="$(uname -m)" && \
+    case "$arch" in \
+        x86_64) rustArch='x86_64-unknown-linux-gnu'; rustupSha256='3dc5ef50861ee18657f9db2eeb7392f9c2a6c95c90ab41e45ab4ca71476b4338' ;; \
+        aarch64) rustArch='aarch64-unknown-linux-gnu'; rustupSha256='32a1532f7cef072a667bac53f1a5542c99666c4071af0c9549795bbdb2069ec1' ;; \
+        *) echo >&2 "unsupported architecture: ${dpkgArch}"; exit 1 ;; \
+    esac && \
+    wget -qO /tmp/rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_INIT_VERSION}/${rustArch}/rustup-init" && \
+    echo "${rustupSha256}  /tmp/rustup-init" | sha256sum -c - && \
     chmod +x /tmp/rustup-init && \
-    /tmp/rustup-init -y --no-modify-path --profile minimal --default-toolchain ${RUST_VERSION} --default-host x86_64-unknown-linux-gnu && \
+    /tmp/rustup-init -y --no-modify-path --profile minimal --default-toolchain ${RUST_VERSION} --default-host ${rustArch} && \
     rm /tmp/rustup-init && \
     chmod -R a+w ${RUSTUP_HOME} ${CARGO_HOME}
 
@@ -47,7 +53,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y install --no-install-recommends gcc libc6-dev musl-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN ln -s /usr/bin/gcc /usr/bin/x86_64-linux-musl-gcc
+RUN ln -s /usr/bin/gcc /usr/bin/"$(uname -m)"-linux-musl-gcc
 
 # Install Rust tooling
 ARG RUST_ANALYZER_VERSION=2021-06-14

@@ -49,15 +49,15 @@ jobs:
           if [ "$TAG" != "$GITHUB_REF" ]; then
             echo ::set-output name=version::$TAG
             echo ::set-output name=debian_version::$TAG-debian
-            echo ::set-output name=platforms::linux/amd64
+            echo ::set-output name=platforms::linux/amd64,linux/arm64
           elif [ "$BRANCH" = "main" ]; then
             echo ::set-output name=version::latest
             echo ::set-output name=debian_version::debian
-            echo ::set-output name=platforms::linux/amd64
+            echo ::set-output name=platforms::linux/amd64,linux/arm64
           else
             echo ::set-output name=version::$BRANCH
             echo ::set-output name=debian_version::$BRANCH-debian
-            echo ::set-output name=platforms::linux/amd64
+            echo ::set-output name=platforms::linux/amd64,linux/arm64
           fi
 
       - name: Build and push final image
