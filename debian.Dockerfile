@@ -42,7 +42,7 @@ RUN ln -s /usr/bin/gcc /usr/bin/x86_64-linux-musl-gcc
 
 # Install Rust tooling
 ARG RUST_ANALYZER_VERSION=2021-06-14
-RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-musl.gz" | \
+RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-gnu.gz" | \
     gunzip > /usr/local/bin/rust-analyzer && \
     chmod 500 /usr/local/bin/rust-analyzer
 RUN rustup component add clippy
