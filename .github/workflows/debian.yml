@@ -48,12 +48,15 @@ jobs:
           echo ::set-output name=created::$(date -u +%Y-%m-%dT%H:%M:%SZ)
           if [ "$TAG" != "$GITHUB_REF" ]; then
             echo ::set-output name=version::$TAG
+            echo ::set-output name=debian_version::$TAG-debian
             echo ::set-output name=platforms::linux/amd64
           elif [ "$BRANCH" = "main" ]; then
             echo ::set-output name=version::latest
+            echo ::set-output name=debian_version::debian
             echo ::set-output name=platforms::linux/amd64
           else
             echo ::set-output name=version::$BRANCH
+            echo ::set-output name=debian_version::$BRANCH-debian
             echo ::set-output name=platforms::linux/amd64
           fi
 
@@ -68,5 +71,5 @@ jobs:
             COMMIT=${{ steps.vars.outputs.commit }}
             VERSION=${{ steps.vars.outputs.version }}
           tags: |
-            qmcgaw/rustdevcontainer:debian
+            qmcgaw/rustdevcontainer:${{ steps.vars.outputs.debian_version }}
           push: true
