@@ -4,7 +4,8 @@
 
 ![Icon](https://github.com/qdm12/rustdevcontainer/raw/main/icon.svg)
 
-[![Build status](https://github.com/qdm12/rustdevcontainer/workflows/Buildx%20latest/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions?query=workflow%3A%22Buildx+latest%22)
+[![CI](https://github.com/qdm12/rustdevcontainer/actions/workflows/ci.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/ci.yml)
+
 [![Docker Pulls](https://img.shields.io/docker/pulls/qmcgaw/rustdevcontainer.svg)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
 [![Docker Stars](https://img.shields.io/docker/stars/qmcgaw/rustdevcontainer.svg)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
 [![Image size](https://images.microbadger.com/badges/image/qmcgaw/rustdevcontainer.svg)](https://microbadger.com/images/qmcgaw/rustdevcontainer)
