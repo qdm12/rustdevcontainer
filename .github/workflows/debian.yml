@@ -5,13 +5,13 @@ on:
       - .github/workflows/debian.yml
       - shell/**
       - .dockerignore
-      - Dockerfile
+      - debian.Dockerfile
   pull_request:
     paths:
       - .github/workflows/debian.yml
       - shell/**
       - .dockerignore
-      - Dockerfile
+      - debian.Dockerfile
 
 jobs:
   verify:
