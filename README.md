@@ -5,6 +5,7 @@
 ![Icon](https://github.com/qdm12/rustdevcontainer/raw/main/icon.svg)
 
 [![Alpine](https://github.com/qdm12/rustdevcontainer/actions/workflows/alpine.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/alpine.yml)
+[![Debian](https://github.com/qdm12/rustdevcontainer/actions/workflows/debian.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/debian.yml)
 
 [![dockeri.co](https://dockeri.co/image/qmcgaw/rustdevcontainer)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
 
@@ -33,11 +34,18 @@
 - Rust 1.52.1
 - Rust Analyzer 2021-06-14
 - Clippy
-- Relatively small: 1.46GB (amd64 image size)
-- Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
-    - Based on Alpine 3.14
-    - Minimal custom terminal and packages
-    - See more [features](https://github.com/qdm12/basedevcontainer#features)
+- Alpine based with Docker tags `:latest` and `:alpine`
+    - 1.62GB amd64 uncompressed image size
+    - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
+        - Based on Alpine 3.14
+        - Minimal custom terminal and packages
+        - See more [features](https://github.com/qdm12/basedevcontainer#features)
+- Debian based with Docker tag `:debian` (1.51GB, based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer))
+    - 1.51GB amd64 uncompressed image size
+    - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
+        - Based on Debian Buster slim
+        - Minimal custom terminal and packages
+        - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Cross platform
     - Easily bind mount your SSH keys to use with **git**
     - Manage your host Docker from within the dev container, more details at [qmcgaw/basedevcontainer](https://github.com/qdm12/basedevcontainer#features)
