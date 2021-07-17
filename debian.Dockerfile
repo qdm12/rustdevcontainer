@@ -26,10 +26,19 @@ LABEL \
     org.opencontainers.image.description="Rust development container for Visual Studio Code Remote Containers development"
 WORKDIR /workspace
 
-# Install Rust for the correct CPU architecture
-RUN wget -qO- https://sh.rustup.rs | sh -s -- -q -y
+# Install Rust
+ARG RUST_VERSION=1.53.0
+ARG RUSTUP_INIT_VERSION=1.24.3
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH
+RUN wget -qO /tmp/rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_INIT_VERSION}/x86_64-unknown-linux-gnu/rustup-init" && \
+    echo "3dc5ef50861ee18657f9db2eeb7392f9c2a6c95c90ab41e45ab4ca71476b4338  /tmp/rustup-init" | sha256sum -c - && \
+    chmod +x /tmp/rustup-init && \
+    /tmp/rustup-init -y --no-modify-path --profile minimal --default-toolchain ${RUST_VERSION} --default-host x86_64-unknown-linux-gnu && \
+    rm /tmp/rustup-init && \
+    chmod -R a+w ${RUSTUP_HOME} ${CARGO_HOME}
 
-ENV PATH=/root/.cargo/bin:${PATH}
 # Install:
 # - gcc, libc6-dev required by Rust
 # - musl-tools required for static binaries
@@ -49,7 +58,7 @@ RUN rustup component add clippy
 
 # Shell setup
 COPY shell/.zshrc-specific shell/.welcome.sh /root/
-RUN mkdir ~/.zfunc && /root/.cargo/bin/rustup completions zsh > ~/.zfunc/_rustup
+RUN mkdir ~/.zfunc && rustup completions zsh > ~/.zfunc/_rustup
 
 # Extra binary tools
 COPY --from=kubectl /bin /usr/local/bin/kubectl

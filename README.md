@@ -35,13 +35,13 @@
 - Rust Analyzer 2021-06-14
 - Clippy
 - Alpine based with Docker tags `:latest` and `:alpine`
-    - 1.62GB amd64 uncompressed image size
+    - 1.19GB amd64 uncompressed image size
     - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
         - Based on Alpine 3.14
         - Minimal custom terminal and packages
         - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Debian based with Docker tag `:debian` (1.51GB, based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer))
-    - 1.51GB amd64 uncompressed image size
+    - 1.1GB amd64 uncompressed image size
     - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
         - Based on Debian Buster slim
         - Minimal custom terminal and packages
