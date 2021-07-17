@@ -6,16 +6,27 @@
 
 [![CI](https://github.com/qdm12/rustdevcontainer/actions/workflows/ci.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/ci.yml)
 
-[![Docker Pulls](https://img.shields.io/docker/pulls/qmcgaw/rustdevcontainer.svg)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
-[![Docker Stars](https://img.shields.io/docker/stars/qmcgaw/rustdevcontainer.svg)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
-[![Image size](https://images.microbadger.com/badges/image/qmcgaw/rustdevcontainer.svg)](https://microbadger.com/images/qmcgaw/rustdevcontainer)
-[![Image version](https://images.microbadger.com/badges/version/qmcgaw/rustdevcontainer.svg)](https://microbadger.com/images/qmcgaw/rustdevcontainer)
+[![dockeri.co](https://dockeri.co/image/qmcgaw/rustdevcontainer)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
+
+![Last Docker tag](https://img.shields.io/docker/v/qmcgaw/rustdevcontainer?sort=semver&label=Last%20Docker%20tag)
+[![Latest size](https://img.shields.io/docker/image-size/qmcgaw/rustdevcontainer/latest?label=Latest%20image)](https://hub.docker.com/r/qmcgaw/rustdevcontainer/tags)
+
+![Last release](https://img.shields.io/github/release/qdm12/rustdevcontainer?label=Last%20release)
+[![Last release size](https://img.shields.io/docker/image-size/qmcgaw/rustdevcontainer?sort=semver&label=Last%20released%20image)](https://hub.docker.com/r/qmcgaw/rustdevcontainer/tags?page=1&ordering=last_updated)
+![GitHub last release date](https://img.shields.io/github/release-date/qdm12/rustdevcontainer?label=Last%20release%20date)
+![Commits since release](https://img.shields.io/github/commits-since/qdm12/rustdevcontainer/latest?sort=semver)
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/commits/main)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/y/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/graphs/contributors)
+[![GitHub closed PRs](https://img.shields.io/github/issues-pr-closed/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/pulls?q=is%3Apr+is%3Aclosed)
+[![GitHub issues](https://img.shields.io/github/issues/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/issues)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/issues?q=is%3Aissue+is%3Aclosed)
+
+[![Lines of code](https://img.shields.io/tokei/lines/github/qdm12/rustdevcontainer)](https://github.com/qdm12/rustdevcontainer)
+![Code size](https://img.shields.io/github/languages/code-size/qdm12/rustdevcontainer)
+![GitHub repo size](https://img.shields.io/github/repo-size/qdm12/rustdevcontainer)
 
 ![Visitors count](https://visitor-badge.laobi.icu/badge?page_id=rustdevcontainer.readme)
-[![Join Slack channel](https://img.shields.io/badge/slack-@qdm12-yellow.svg?logo=slack)](https://join.slack.com/t/qdm12/shared_invite/enQtOTE0NjcxNTM1ODc5LTYyZmVlOTM3MGI4ZWU0YmJkMjUxNmQ4ODQ2OTAwYzMxMTlhY2Q1MWQyOWUyNjc2ODliNjFjMDUxNWNmNzk5MDk)
-[![GitHub last commit](https://img.shields.io/github/last-commit/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/issues)
-[![GitHub commit activity](https://img.shields.io/github/commit-activity/y/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/issues)
-[![GitHub issues](https://img.shields.io/github/issues/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/issues)
 
 ## Features
 
