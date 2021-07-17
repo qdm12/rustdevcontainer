@@ -4,7 +4,7 @@
 
 ![Icon](https://github.com/qdm12/rustdevcontainer/raw/main/icon.svg)
 
-[![CI](https://github.com/qdm12/rustdevcontainer/actions/workflows/ci.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/ci.yml)
+[![Alpine](https://github.com/qdm12/rustdevcontainer/actions/workflows/alpine.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/alpine.yml)
 
 [![dockeri.co](https://dockeri.co/image/qmcgaw/rustdevcontainer)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
 
