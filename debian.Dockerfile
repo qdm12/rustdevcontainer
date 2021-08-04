@@ -1,3 +1,4 @@
+ARG BASEDEV_VERSION=v0.2.0
 ARG KUBECTL_VERSION=v1.22.0
 ARG STERN_VERSION=v1.19.0
 ARG KUBECTX_VERSION=v0.9.4
@@ -10,7 +11,7 @@ FROM qmcgaw/binpot:kubectx-${KUBECTX_VERSION} AS kubectx
 FROM qmcgaw/binpot:kubens-${KUBENS_VERSION} AS kubens
 FROM qmcgaw/binpot:helm-${HELM_VERSION} AS helm
 
-FROM qmcgaw/basedevcontainer:debian
+FROM qmcgaw/basedevcontainer:${BASEDEV_VERSION}-debian
 ARG CREATED
 ARG COMMIT
 ARG VERSION=local
