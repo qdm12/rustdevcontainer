@@ -1,6 +1,6 @@
 # Rust Dev Container
 
-**Rust development container for Visual Studio Code**
+Rust development container for Visual Studio Code
 
 ![Icon](https://github.com/qdm12/rustdevcontainer/raw/main/icon.svg)
 
@@ -35,21 +35,22 @@
 - Rust Analyzer 2021-06-14
 - Clippy
 - Alpine based with Docker tags `:latest` and `:alpine`
-    - 1.19GB amd64 uncompressed image size
-    - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
-        - Based on Alpine 3.14
-        - Minimal custom terminal and packages
-        - See more [features](https://github.com/qdm12/basedevcontainer#features)
+  - 1.19GB amd64 uncompressed image size
+  - Compatible with `amd64`
+  - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
+    - Based on Alpine 3.14
+    - Minimal custom terminal and packages
+    - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Debian based with Docker tag `:debian` (1.51GB, based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer))
-    - 1.1GB amd64 uncompressed image size
-    - Compatible with `amd64` and `arm64`
-    - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
-        - Based on Debian Buster slim
-        - Minimal custom terminal and packages
-        - See more [features](https://github.com/qdm12/basedevcontainer#features)
+  - 1.1GB amd64 uncompressed image size
+  - Compatible with `amd64` and `arm64`
+  - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
+    - Based on Debian Buster slim
+    - Minimal custom terminal and packages
+    - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Cross platform
-    - Easily bind mount your SSH keys to use with **git**
-    - Manage your host Docker from within the dev container, more details at [qmcgaw/basedevcontainer](https://github.com/qdm12/basedevcontainer#features)
+  - Easily bind mount your SSH keys to use with **git**
+  - Manage your host Docker from within the dev container, more details at [qmcgaw/basedevcontainer](https://github.com/qdm12/basedevcontainer#features)
 - Extensible with docker-compose.yml
 - Comes with extra binary tools for a few extra MBs: `kubectl`, `kubectx`, `kubens`, `stern` and `helm`
 
