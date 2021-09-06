@@ -48,7 +48,7 @@ RUN apk add --no-cache gcc && \
 RUN apk add --no-cache musl-dev
 
 # Install Rust tooling
-ARG RUST_ANALYZER_VERSION=2021-08-23
+ARG RUST_ANALYZER_VERSION=2021-09-06
 RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-musl.gz" | \
     gunzip > /usr/local/bin/rust-analyzer && \
     chmod 500 /usr/local/bin/rust-analyzer
