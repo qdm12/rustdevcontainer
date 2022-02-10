@@ -1,6 +1,6 @@
 ARG BASEDEV_VERSION=v0.9.0
 ARG KUBECTL_VERSION=v1.23.1
-ARG STERN_VERSION=v1.20.1
+ARG STERN_VERSION=v1.21.0
 ARG KUBECTX_VERSION=v0.9.4
 ARG KUBENS_VERSION=v0.9.4
 ARG HELM_VERSION=v3.8.0
@@ -35,9 +35,9 @@ ENV RUSTUP_HOME=/usr/local/rustup \
     PATH=/usr/local/cargo/bin:$PATH
 RUN arch="$(uname -m)" && \
     case "$arch" in \
-        x86_64) rustArch='x86_64-unknown-linux-gnu'; rustupSha256='3dc5ef50861ee18657f9db2eeb7392f9c2a6c95c90ab41e45ab4ca71476b4338' ;; \
-        aarch64) rustArch='aarch64-unknown-linux-gnu'; rustupSha256='32a1532f7cef072a667bac53f1a5542c99666c4071af0c9549795bbdb2069ec1' ;; \
-        *) echo >&2 "unsupported architecture: ${dpkgArch}"; exit 1 ;; \
+    x86_64) rustArch='x86_64-unknown-linux-gnu'; rustupSha256='3dc5ef50861ee18657f9db2eeb7392f9c2a6c95c90ab41e45ab4ca71476b4338' ;; \
+    aarch64) rustArch='aarch64-unknown-linux-gnu'; rustupSha256='32a1532f7cef072a667bac53f1a5542c99666c4071af0c9549795bbdb2069ec1' ;; \
+    *) echo >&2 "unsupported architecture: ${dpkgArch}"; exit 1 ;; \
     esac && \
     wget -qO /tmp/rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_INIT_VERSION}/${rustArch}/rustup-init" && \
     echo "${rustupSha256}  /tmp/rustup-init" | sha256sum -c - && \
