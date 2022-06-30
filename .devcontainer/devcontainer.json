@@ -31,6 +31,10 @@
     ],
     "settings": {
         "files.eol": "\n",
+        "[rust]": {
+            "editor.defaultFormatter": "rust-lang.rust-analyzer",
+            "editor.formatOnSave": true
+        },
         "remote.extensionKind": {
             "ms-azuretools.vscode-docker": "workspace"
         },
