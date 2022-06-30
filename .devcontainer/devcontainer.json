@@ -8,7 +8,7 @@
     "workspaceFolder": "/workspace",
     // "overrideCommand": "",
     "extensions": [
-        "matklad.rust-analyzer",
+        "rust-lang.rust-analyzer",
         "tamasfe.even-better-toml", // for Cargo.toml
         "eamodio.gitlens", // IDE Git information
         "davidanson.vscode-markdownlint",
