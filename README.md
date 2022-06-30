@@ -34,6 +34,7 @@ Rust development container for Visual Studio Code
 - Rust 1.60.0
 - Rust Analyzer 2022-04-25
 - Clippy
+- Rustfmt
 - Alpine based with Docker tags `:latest` and `:alpine`
   - 1.19GB amd64 uncompressed image size
   - Compatible with `amd64`
