@@ -39,7 +39,7 @@ Rust development container for Visual Studio Code
   - 1.16GB amd64 uncompressed image size
   - Compatible with `amd64`
   - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
-    - Based on Alpine 3.15
+    - Based on Alpine 3.16
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Debian based with Docker tag `:debian` (1.51GB, based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer))
