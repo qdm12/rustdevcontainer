@@ -54,7 +54,6 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     apt-get -y install --no-install-recommends gcc libc6-dev musl-tools && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN ln -s /usr/bin/gcc /usr/bin/"$(uname -m)"-linux-musl-gcc
 
 # Install Rust tooling
 ARG RUST_ANALYZER_VERSION=2022-10-31
