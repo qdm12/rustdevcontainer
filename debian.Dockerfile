@@ -57,7 +57,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 RUN ln -s /usr/bin/gcc /usr/bin/"$(uname -m)"-linux-musl-gcc
 
 # Install Rust tooling
-ARG RUST_ANALYZER_VERSION=2022-08-22
+ARG RUST_ANALYZER_VERSION=2022-10-31
 RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-gnu.gz" | \
     gunzip > /usr/local/bin/rust-analyzer && \
     chmod 500 /usr/local/bin/rust-analyzer
