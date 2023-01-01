@@ -28,7 +28,7 @@ LABEL \
 WORKDIR /workspace
 
 # Install Rust for the correct CPU architecture
-ARG RUST_VERSION=1.64.0
+ARG RUST_VERSION=1.66.0
 ARG RUSTUP_INIT_VERSION=1.24.3
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
