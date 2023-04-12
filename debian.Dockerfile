@@ -56,7 +56,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install Rust tooling
-ARG RUST_ANALYZER_VERSION=2023-01-02
+ARG RUST_ANALYZER_VERSION=2023-04-10
 RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-gnu.gz" | \
     gunzip > /usr/local/bin/rust-analyzer && \
     chmod 500 /usr/local/bin/rust-analyzer
