@@ -68,6 +68,8 @@ See [.devcontainer/README.md#Requirements](.devcontainer/README.md#Requirements)
         docker run -it --rm -v "/yourrepopath:/repository" qmcgaw/devtainr:v0.2.0 -dev rust -path /repository -name projectname
         ```
 
+        If you run on Linux not as root, run the `docker run` command with `--user="$(id -u):$(id -g)"`.
+
         Or use the [built binary](https://github.com/qdm12/devtainr#binary)
     - Or manually: download this repository and put the [.devcontainer](.devcontainer) directory in your project.
 1. If you have a *.vscode/settings.json*, eventually move the settings to *.devcontainer/devcontainer.json* in the `"settings"` section as *.vscode/settings.json* take precedence over the settings defined in *.devcontainer/devcontainer.json*.
