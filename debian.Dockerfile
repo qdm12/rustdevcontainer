@@ -61,6 +61,7 @@ RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/
     gunzip > /usr/local/bin/rust-analyzer && \
     chmod 500 /usr/local/bin/rust-analyzer
 RUN rustup component add clippy rustfmt
+RUN cargo install cargo-binstall
 
 # Shell setup
 COPY shell/.zshrc-specific shell/.welcome.sh /root/
