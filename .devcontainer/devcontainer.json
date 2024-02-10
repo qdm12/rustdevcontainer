@@ -39,14 +39,14 @@
             "settings": {
                 "files.eol": "\n",
                 "editor.formatOnSave": true,
+                "editor.codeActionsOnSaveTimeout": 3000,
                 "[rust]": {
                     "editor.defaultFormatter": "rust-lang.rust-analyzer"
                 },
+                "rust-analyzer.serverPath": "/usr/local/bin/rust-analyzer",
                 "remote.extensionKind": {
                     "ms-azuretools.vscode-docker": "workspace"
                 },
-                "editor.codeActionsOnSaveTimeout": 3000,
-                "rust-analyzer.serverPath": "/usr/local/bin/rust-analyzer"
             }
         }
     }
