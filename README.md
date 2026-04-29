@@ -21,10 +21,6 @@ Rust development container for Visual Studio Code
 [![GitHub issues](https://img.shields.io/github/issues/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/qdm12/rustdevcontainer.svg)](https://github.com/qdm12/rustdevcontainer/issues?q=is%3Aissue+is%3Aclosed)
 
-[![Lines of code](https://img.shields.io/tokei/lines/github/qdm12/rustdevcontainer)](https://github.com/qdm12/rustdevcontainer)
-![Code size](https://img.shields.io/github/languages/code-size/qdm12/rustdevcontainer)
-![GitHub repo size](https://img.shields.io/github/repo-size/qdm12/rustdevcontainer)
-
 ![Visitors count](https://visitor-badge.laobi.icu/badge?page_id=rustdevcontainer.readme)
 
 ## Features
