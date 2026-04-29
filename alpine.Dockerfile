@@ -29,13 +29,13 @@ WORKDIR /workspace
 
 # Install Rust
 ARG RUST_VERSION=1.76.0
-ARG RUSTUP_INIT_VERSION=1.26.0
+ARG RUSTUP_INIT_VERSION=1.29.0
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH
 RUN wget -qO /tmp/rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_INIT_VERSION}/x86_64-unknown-linux-musl/rustup-init" && \
     sha256sum /tmp/rustup-init && \
-    echo "7aa9e2a380a9958fc1fc426a3323209b2c86181c6816640979580f62ff7d48d4  /tmp/rustup-init" | sha256sum -c - && \
+    echo "9cd3fda5fd293890e36ab271af6a786ee22084b5f6c2b83fd8323cec6f0992c1  /tmp/rustup-init" | sha256sum -c - && \
     chmod +x /tmp/rustup-init && \
     /tmp/rustup-init -y --no-modify-path --profile minimal --default-toolchain ${RUST_VERSION} --default-host x86_64-unknown-linux-musl && \
     rm /tmp/rustup-init && \
