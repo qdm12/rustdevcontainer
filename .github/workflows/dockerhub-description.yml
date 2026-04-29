@@ -1,7 +1,7 @@
 name: Docker Hub description
 on:
   push:
-    branches: [main]
+    branches: [ main ]
     paths:
       - README.md
       - .github/workflows/dockerhub-description.yml
@@ -10,9 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3.2.0
+        uses: actions/checkout@v6
       - name: Docker Hub Description
-        uses: peter-evans/dockerhub-description@v3.1.2
+        uses: peter-evans/dockerhub-description@v5
         env:
           DOCKERHUB_USERNAME: qmcgaw
           DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
