@@ -7,8 +7,6 @@ Rust development container for Visual Studio Code
 [![Alpine](https://github.com/qdm12/rustdevcontainer/actions/workflows/alpine.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/alpine.yml)
 [![Debian](https://github.com/qdm12/rustdevcontainer/actions/workflows/debian.yml/badge.svg)](https://github.com/qdm12/rustdevcontainer/actions/workflows/debian.yml)
 
-[![dockeri.co](https://dockeri.co/image/qmcgaw/rustdevcontainer)](https://hub.docker.com/r/qmcgaw/rustdevcontainer)
-
 ![Last Docker tag](https://img.shields.io/docker/v/qmcgaw/rustdevcontainer?sort=semver&label=Last%20Docker%20tag)
 [![Latest size](https://img.shields.io/docker/image-size/qmcgaw/rustdevcontainer/latest?label=Latest%20image)](https://hub.docker.com/r/qmcgaw/rustdevcontainer/tags)
 
