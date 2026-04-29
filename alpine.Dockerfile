@@ -28,7 +28,7 @@ LABEL \
 WORKDIR /workspace
 
 # Install Rust
-ARG RUST_VERSION=1.76.0
+ARG RUST_VERSION=1.95.0
 ARG RUSTUP_INIT_VERSION=1.29.0
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \

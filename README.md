@@ -31,7 +31,7 @@ Rust development container for Visual Studio Code
 
 ## Features
 
-- Rust 1.76.0
+- Rust 1.95.0
 - Rust Analyzer 2024-02-05
 - Clippy
 - Rustfmt
