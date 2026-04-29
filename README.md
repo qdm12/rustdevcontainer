@@ -36,17 +36,15 @@ Rust development container for Visual Studio Code
 - Clippy
 - Rustfmt
 - Alpine based with Docker tags `:latest` and `:alpine`
-  - 1.16GB amd64 uncompressed image size
-  - Compatible with `amd64`
+  - Compatible with `amd64` (1.99GB image size)
   - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
-    - Based on Alpine 3.19
+    - Based on Alpine 3.23
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Debian based with Docker tag `:debian` (1.51GB, based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer))
-  - 1.21GB amd64 uncompressed image size
-  - Compatible with `amd64` and `arm64`
+  - Compatible with `amd64` (1.96GB image size) and `arm64` (1.86GB image size)
   - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
-    - Based on Debian Buster slim
+    - Based on Debian Trixie
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Cross platform
