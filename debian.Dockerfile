@@ -29,14 +29,14 @@ WORKDIR /workspace
 
 # Install Rust for the correct CPU architecture
 ARG RUST_VERSION=1.99.1
-ARG RUSTUP_INIT_VERSION=1.29.0
+ARG RUSTUP_INIT_VERSION=1.29.1
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH
 RUN arch="$(uname -m)" && \
     case "$arch" in \
-    x86_64) rustArch='x86_64-unknown-linux-gnu'; rustupSha256='4acc9acc76d5079515b46346a485974457b5a79893cfb01112423c89aeb5aa10' ;; \
-    aarch64) rustArch='aarch64-unknown-linux-gnu'; rustupSha256='9732d6c5e2a098d3521fca8145d826ae0aaa067ef2385ead08e6feac88fa5792' ;; \
+    x86_64) rustArch='x86_64-unknown-linux-gnu'; rustupSha256='dda7234360b7f578ca8b0ddcb80145646fa61a67c1720a5abc7051b35c9fcb71' ;; \
+    aarch64) rustArch='aarch64-unknown-linux-gnu'; rustupSha256='15f6e4ce9f583b929c996c91562bad6d4454f3281de858b02cdfdef615fac433' ;; \
     *) echo >&2 "unsupported architecture: ${dpkgArch}"; exit 1 ;; \
     esac && \
     wget -qO /tmp/rustup-init "https://static.rust-lang.org/rustup/archive/${RUSTUP_INIT_VERSION}/${rustArch}/rustup-init" && \
