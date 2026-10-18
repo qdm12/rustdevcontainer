@@ -85,7 +85,7 @@ RUN rustup component add clippy rustfmt
 RUN cargo install cargo-binstall
 
 # Shell setup
-COPY --chown="${USER_UID}:${USER_GID}" --chmod=644 shell/.zshrc-specific shell/.welcome.sh ${USER_HOME}/
+COPY --chown="${USER_UID}:${USER_GID}" --chmod=644 shell/.zshrc-plugins shell/.welcome.sh ${USER_HOME}/
 RUN mkdir ~/.zfunc && rustup completions zsh > ~/.zfunc/_rustup
 
 # Extra binary tools
