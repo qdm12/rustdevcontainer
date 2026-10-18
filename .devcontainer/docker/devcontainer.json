@@ -7,10 +7,14 @@
         "SSH_AUTH_SOCK": "/tmp/ssh-agent.sock" // Comment out if not using the SSH agent
     },
     "build": {
-        "dockerfile": "./Dockerfile"
+        "dockerfile": "../Dockerfile"
     },
     "runArgs": [
-        "--add-host=host.docker.internal:host-gateway"
+        // Set `host.docker.internal` to match Docker Desktop setups, in case this is running
+        // without Docker desktop using dockerd only.
+        "--add-host=host.docker.internal:host-gateway",
+        // Set `host.containers.internal` to match Podman setups to simplify cross engine configuration
+        "--add-host=host.containers.internal:host-gateway"
     ],
     "postCreateCommand": "~/.ssh.sh",
     // Mount the checkout at the SAME absolute path it has on the host. A path handed
@@ -87,7 +91,11 @@
             "target": "/AGENTS.md",
             "type": "bind"
         },
-        // Docker socket to access the host Docker server
+        // Engine: the host's Docker daemon, reached through its own Unix socket and
+        // mounted at the same path, so docker, docker compose and any Docker SDK work
+        // with no DOCKER_HOST. /var/run/docker.sock is where a Linux dockerd listens by
+        // default, and Docker Desktop with WSL integration exposes the same path inside
+        // the distro.
         {
             "source": "/var/run/docker.sock",
             "target": "/var/run/docker.sock",
@@ -105,7 +113,9 @@
         "vscode": {
             "extensions": [
                 "rust-lang.rust-analyzer",
-                "tamasfe.even-better-toml", // for Cargo.toml
+                "tamasfe.even-better-toml",
+                "serayuzgur.crates",
+                "vadimcn.vscode-lldb",
                 "eamodio.gitlens", // IDE Git information
                 "davidanson.vscode-markdownlint",
                 "ms-azuretools.vscode-docker", // Docker integration and linting
@@ -130,12 +140,11 @@
                 // General settings
                 "files.eol": "\n",
                 "editor.formatOnSave": true,
-                "editor.codeActionsOnSaveTimeout": 3000,
-                // Rust settings
                 "[rust]": {
-                    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+                    "editor.defaultFormatter": "rust-lang.rust-analyzer",
+                    "editor.formatOnSave": true
                 },
-                "rust-analyzer.serverPath": "/usr/local/bin/rust-analyzer",
+                "rust-analyzer.checkOnSave.command": "clippy",
                 // Docker settings
                 "remote.extensionKind": {
                     "ms-azuretools.vscode-docker": "workspace"

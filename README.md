@@ -44,6 +44,7 @@ Rust development container for Visual Studio Code
 - Cross platform
   - Easily bind mount your SSH keys to use with **git**
   - Manage your host Docker from within the dev container, more details at [qmcgaw/basedevcontainer](https://github.com/qdm12/basedevcontainer#features)
+- Compatible with both the Docker and Podman engines
 - Extensible with docker-compose.yml
 - Comes with extra binary tools for a few extra MBs: `kubectl`, `kubectx`, `kubens`, `stern` and `helm`
 
@@ -63,8 +64,8 @@ See [.devcontainer/README.md#Requirements](.devcontainer/README.md#Requirements)
         If you run on Linux not as root, run the `docker run` command with `--user="$(id -u):$(id -g)"`.
 
         Or use the [built binary](https://github.com/qdm12/devtainr#binary)
-    - Or manually: download this repository and put the [.devcontainer](.devcontainer) directory in your project.
-1. If you have a *.vscode/settings.json*, eventually move the settings to *.devcontainer/devcontainer.json* in the `"settings"` section as *.vscode/settings.json* take precedence over the settings defined in *.devcontainer/devcontainer.json*.
+    - Or manually: download this repository and put the [.devcontainer](.devcontainer) directory in your project. It holds a `docker/` and a `podman/` configuration, pick the one matching your container engine.
+1. If you have a *.vscode/settings.json*, eventually move the settings to *`.devcontainer/*/devcontainer.json`* in the `"settings"` section as *.vscode/settings.json* take precedence over the settings defined in *.devcontainer/*/devcontainer.json*.
 1. Open the command palette in Visual Studio Code (CTRL+SHIFT+P) and select `Remote-Containers: Open Folder in Container...` and choose your project directory
 1. See [.devcontainer/README.md#Setup](.devcontainer/README.md#Setup)
 
@@ -87,10 +88,10 @@ services:
       POSTGRES_PASSWORD: password
 ```
 
-And change the following in `.devcontainer/devcontainer.json`:
+And change the following in your relevant `devcontainer.json`:
 
-- remove `"build": { "dockerfile": "./Dockerfile" },`
-- add `"dockerComposeFile": "docker-compose.yml",`
+- remove `"build": { "dockerfile": "../Dockerfile" },`
+- add `"dockerComposeFile": "../docker-compose.yml",`
 - add `"overrideCommand": true,`
 - add `"service": "vscode",`
 - add `"runServices": ["vscode", "postgres"],`
