@@ -5,13 +5,13 @@ ARG KUBECTX_VERSION=v0.11.0
 ARG KUBENS_VERSION=v0.11.0
 ARG HELM_VERSION=v4.1.3
 
-FROM qmcgaw/binpot:kubectl-${KUBECTL_VERSION} AS kubectl
-FROM qmcgaw/binpot:stern-${STERN_VERSION} AS stern
-FROM qmcgaw/binpot:kubectx-${KUBECTX_VERSION} AS kubectx
-FROM qmcgaw/binpot:kubens-${KUBENS_VERSION} AS kubens
-FROM qmcgaw/binpot:helm-${HELM_VERSION} AS helm
+FROM ghcr.io/qdm12/binpot:kubectl-${KUBECTL_VERSION} AS kubectl
+FROM ghcr.io/qdm12/binpot:stern-${STERN_VERSION} AS stern
+FROM ghcr.io/qdm12/binpot:kubectx-${KUBECTX_VERSION} AS kubectx
+FROM ghcr.io/qdm12/binpot:kubens-${KUBENS_VERSION} AS kubens
+FROM ghcr.io/qdm12/binpot:helm-${HELM_VERSION} AS helm
 
-FROM qmcgaw/basedevcontainer:${BASEDEV_VERSION}-debian
+FROM ghcr.io/qdm12/basedevcontainer:${BASEDEV_VERSION}-debian
 ARG CREATED
 ARG COMMIT
 ARG VERSION=local
