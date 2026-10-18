@@ -1,1 +1,1 @@
-FROM qmcgaw/rustdevcontainer
+FROM ghcr.io/qdm12/rustdevcontainer

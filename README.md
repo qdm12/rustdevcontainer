@@ -29,13 +29,13 @@ Rust development container for Visual Studio Code
 - Rust Analyzer 2026-10-12
 - Clippy
 - Rustfmt
-- Alpine based with Docker tags `:latest` and `:alpine`
+- Alpine based with Docker tags `ghcr.io/qdm12/rustdevcontainer:latest` and `ghcr.io/qdm12/rustdevcontainer:alpine`
   - Compatible with `amd64` (2GB image size)
   - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
     - Based on Alpine 3.23
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
-- Debian based with Docker tag `:debian`
+- Debian based with Docker tag `ghcr.io/qdm12/rustdevcontainer:debian`
   - Compatible with `amd64` (2GB image size) and `arm64` (1.9GB image size)
   - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
     - Based on Debian Trixie

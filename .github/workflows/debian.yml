@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v6
 
       - name: Build image
-        run: docker build -f debian.Dockerfile -t qmcgaw/rustdevcontainer .
+        run: docker build -f debian.Dockerfile -t ghcr.io/qdm12/rustdevcontainer .
 
   publish:
     if: |
