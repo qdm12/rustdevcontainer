@@ -1,15 +1,13 @@
 {
     // See https://containers.dev/implementors/json_reference/
-    // User defined settings
-    "containerEnv": {
-        "TZ": ""
-    },
-    // Fixed settings
     "name": "project-dev",
-    "postCreateCommand": "~/.windows.sh",
+    "containerEnv": {
+        "TZ": "" // User defined timezone
+    },
     "dockerComposeFile": "docker-compose.yml",
     "overrideCommand": true,
     "service": "vscode",
+    "postCreateCommand": "~/.windows.sh",
     "workspaceFolder": "/workspace",
     "mounts": [
         // Source code
@@ -72,13 +70,16 @@
                 // "spikespaz.vscode-smoothtype", // smooth cursor animation
             ],
             "settings": {
+                // General settings
                 "files.eol": "\n",
                 "editor.formatOnSave": true,
                 "editor.codeActionsOnSaveTimeout": 3000,
+                // Rust settings
                 "[rust]": {
                     "editor.defaultFormatter": "rust-lang.rust-analyzer"
                 },
                 "rust-analyzer.serverPath": "/usr/local/bin/rust-analyzer",
+                // Docker settings
                 "remote.extensionKind": {
                     "ms-azuretools.vscode-docker": "workspace"
                 }
