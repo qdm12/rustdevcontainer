@@ -1,4 +1,4 @@
-ARG BASEDEV_VERSION=v0.29.0
+ARG BASEDEV_VERSION=v0.30.0
 ARG KUBECTL_VERSION=v1.35.3
 ARG STERN_VERSION=v1.33.1
 ARG KUBECTX_VERSION=v0.11.0
@@ -25,14 +25,38 @@ LABEL \
     org.opencontainers.image.source="https://github.com/qdm12/rustdevcontainer" \
     org.opencontainers.image.title="Rust Debian Dev container" \
     org.opencontainers.image.description="Rust development container for Visual Studio Code Remote Containers development"
+# The base image creates and runs an unprivileged account (uid/gid 1000 by default,
+# named `user`). These build arguments mirror it so the paths below follow the account
+# you build with: keep them in sync with the "remoteUser" key and the mount targets in
+# devcontainer.json.
+ARG USERNAME=user
+ARG GROUP_NAME=user
+ARG USER_UID=1000
+ARG USER_GID=1000
+ARG USER_HOME=/home/${USERNAME}
+
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo \
+    PATH=/usr/local/cargo/bin:$PATH
 WORKDIR /workspace
+
+# Only this block needs root, the rest of the build runs as the unprivileged account,
+# like the container does.
+USER root
+# Group ID of the `docker` group on the host, needed to open a rootful engine's
+# /var/run/docker.sock. The published base image has no such group, so create it here.
+# Left empty, the group is not created. Alternatively pass
+# --group-add=$(stat -c %g /var/run/docker.sock) to the container, no rebuild needed.
+ARG DOCKER_GID=
+RUN set -eux && \
+    if [ -n "${DOCKER_GID}" ] && ! grep -q "^docker:" /etc/group; then \
+    groupadd -g "${DOCKER_GID}" docker && \
+    usermod -aG docker "${USERNAME}"; \
+    fi
 
 # Install Rust for the correct CPU architecture
 ARG RUST_VERSION=1.99.1
 ARG RUSTUP_INIT_VERSION=1.29.1
-ENV RUSTUP_HOME=/usr/local/rustup \
-    CARGO_HOME=/usr/local/cargo \
-    PATH=/usr/local/cargo/bin:$PATH
 RUN arch="$(uname -m)" && \
     case "$arch" in \
     x86_64) rustArch='x86_64-unknown-linux-gnu'; rustupSha256='dda7234360b7f578ca8b0ddcb80145646fa61a67c1720a5abc7051b35c9fcb71' ;; \
@@ -44,7 +68,10 @@ RUN arch="$(uname -m)" && \
     chmod +x /tmp/rustup-init && \
     /tmp/rustup-init -y --no-modify-path --profile minimal --default-toolchain ${RUST_VERSION} --default-host ${rustArch} && \
     rm /tmp/rustup-init && \
-    chmod -R a+w ${RUSTUP_HOME} ${CARGO_HOME}
+    chmod -R a+w ${RUSTUP_HOME} ${CARGO_HOME} && \
+    # The unprivileged account builds into these two directories (rustup components,
+    # cargo install), so it owns them.
+    chown -R "${USER_UID}:${USER_GID}" ${RUSTUP_HOME} ${CARGO_HOME}
 
 # Install:
 # - gcc, libc6-dev required by Rust
@@ -59,17 +86,19 @@ RUN export DEBIAN_FRONTEND=noninteractive && \
 ARG RUST_ANALYZER_VERSION=2026-10-12
 RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-gnu.gz" | \
     gunzip > /usr/local/bin/rust-analyzer && \
-    chmod 500 /usr/local/bin/rust-analyzer
+    chmod 755 /usr/local/bin/rust-analyzer
+USER ${USERNAME}
+
 RUN rustup component add clippy rustfmt
 RUN cargo install cargo-binstall
 
 # Shell setup
-COPY shell/.zshrc-specific shell/.welcome.sh /root/
+COPY --chown="${USER_UID}:${USER_GID}" --chmod=644 shell/.zshrc-specific shell/.welcome.sh ${USER_HOME}/
 RUN mkdir ~/.zfunc && rustup completions zsh > ~/.zfunc/_rustup
 
 # Extra binary tools
-COPY --from=kubectl /bin /usr/local/bin/kubectl
-COPY --from=stern /bin /usr/local/bin/stern
-COPY --from=kubectx /bin /usr/local/bin/kubectx
-COPY --from=kubectx /bin /usr/local/bin/kubens
-COPY --from=helm /bin /usr/local/bin/helm
+COPY --chown="${USER_UID}:${USER_GID}" --from=kubectl /bin /usr/local/bin/kubectl
+COPY --chown="${USER_UID}:${USER_GID}" --from=stern /bin /usr/local/bin/stern
+COPY --chown="${USER_UID}:${USER_GID}" --from=kubectx /bin /usr/local/bin/kubectx
+COPY --chown="${USER_UID}:${USER_GID}" --from=kubectx /bin /usr/local/bin/kubens
+COPY --chown="${USER_UID}:${USER_GID}" --from=helm /bin /usr/local/bin/helm

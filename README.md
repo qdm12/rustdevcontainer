@@ -30,23 +30,27 @@ Rust development container for Visual Studio Code
 - Clippy
 - Rustfmt
 - Alpine based with Docker tags `ghcr.io/qdm12/rustdevcontainer:latest` and `ghcr.io/qdm12/rustdevcontainer:alpine`
-  - Compatible with `amd64` (2GB image size)
+  - Compatible with `amd64` (2.1GB uncompressed image size)
   - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
-    - Based on Alpine 3.23
+    - Based on Alpine 3.24
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Debian based with Docker tag `ghcr.io/qdm12/rustdevcontainer:debian`
-  - Compatible with `amd64` (2GB image size) and `arm64` (1.9GB image size)
+  - Compatible with `amd64` (2.08GB uncompressed image size) and `arm64` (1.96GB uncompressed image size)
   - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
     - Based on Debian Trixie
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
+- Runs as an unprivileged user (`user`, uid/gid `1000` by default, configurable), see [Non-root user](#non-root-user)
+  - `apk` (Alpine) and `apt-get` (Debian) install packages from that user, no sudo involved
 - Cross platform
   - Easily bind mount your SSH keys to use with **git**
   - Manage your host Docker from within the dev container, more details at [qmcgaw/basedevcontainer](https://github.com/qdm12/basedevcontainer#features)
 - Compatible with both the Docker and Podman engines
 - Extensible with docker-compose.yml
 - Comes with extra binary tools for a few extra MBs: `kubectl`, `kubectx`, `kubens`, `stern` and `helm`
+
+Image sizes are the **uncompressed** ones, as reported by `podman image ls` or `docker image ls`. The compressed size transferred on a pull is roughly a third of that.
 
 ## Requirements
 
@@ -69,9 +73,51 @@ See [.devcontainer/README.md#Requirements](.devcontainer/README.md#Requirements)
 1. Open the command palette in Visual Studio Code (CTRL+SHIFT+P) and select `Remote-Containers: Open Folder in Container...` and choose your project directory
 1. See [.devcontainer/README.md#Setup](.devcontainer/README.md#Setup)
 
+## Non-root user
+
+The image runs using an unprivileged account `user`, created by the [base image](https://github.com/qdm12/basedevcontainer#non-root-user).
+
+💁 In case you need root access, see [the root user section](#root-user)
+
+The non root user is configurable with container build arguments, defined both in the Dockerfiles and in the devcontainer.json files:
+
+| Build argument | Default | Description |
+| --- | --- | --- |
+| `USERNAME` | `user` | account name, home is `/home/$USERNAME`. Update the `"remoteUser"` key and mount targets in `devcontainer.json` to match this one if changed. |
+| `GROUP_NAME` | `user` | name of the account's primary group |
+| `USER_UID` | `1000` | user ID of the account |
+| `USER_GID` | `1000` | group ID of the account's primary group (`$GROUP_NAME`) |
+| `DOCKER_GID` | | create a `docker` group with this GID and put the account in it, to reach a rootful engine's socket, see [Container engine](.devcontainer/README.md#docker-engine) |
+
+The unprivileged account:
+
+- owns its home, `/usr/local/cargo` (its `CARGO_HOME`) and `/usr/local/rustup` (its `RUSTUP_HOME`), so it can install and remove packages without `sudo` or `doas`
+- can write to a directory a package may add or remove a file in (`/usr/local/bin`, `/etc/ssl/certs`, `/var/log`...), which all belong to `$GROUP_NAME` and are group-writable.
+- can only read and execute files installed in the container image and setup by the container engine
+- cannot read `/root` and `/etc/shadow`
+
+On system package management, note:
+
+- it cannot replace a file the image already has installed, since those keep their root ownership
+- for the Debian container, some packages have maintainer scripts that insist on running as root, and will fail to install (i.e. `dbus`); the fix is to finish the job as root for example `docker exec --user root <container-name> sh -c 'apt-get install -y dbus && dpkg --configure -a'`
+
+## Root user
+
+If you need to run a command as root, exec in the container using for example
+
+```sh
+docker exec --user root <container-name> command
+```
+
+Root has the same terminal setup as the unprivileged account, given its configuration files are symlinks into `/home/user`.
+Note however that by default the zsh history and ssh files are not symlinked or copied from the unprivileged user to root.
+The shell prints `Running as root` at startup, so you always know which account a terminal belongs to.
+
 ## Customization
 
 See [.devcontainer/README.md#Customization](.devcontainer/README.md#Customization)
+
+When you extend the image in a Dockerfile, the build runs as the unprivileged account: use `USER root` before instructions that do need root, and `USER user` to give it back.
 
 ### docker-compose.yml
 
