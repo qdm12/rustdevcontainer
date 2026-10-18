@@ -72,6 +72,31 @@ See [.devcontainer/README.md#Requirements](.devcontainer/README.md#Requirements)
 
 See [.devcontainer/README.md#Customization](.devcontainer/README.md#Customization)
 
+### docker-compose.yml
+
+You can create a `.devcontainer/docker-compose.yml` to create the devcontainer and other containers at the same time:
+
+```yml
+services:
+  vscode: # configured in devcontainer.json
+    build: .
+  postgres: # example of a database container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+```
+
+And change the following in `.devcontainer/devcontainer.json`:
+
+- remove `"build": { "dockerfile": "./Dockerfile" },`
+- add `"dockerComposeFile": "docker-compose.yml",`
+- add `"overrideCommand": true,`
+- add `"service": "vscode",`
+- add `"runServices": ["vscode", "postgres"],`
+
+Finally, open the command palette in Visual Studio Code (CTRL+SHIFT+P) and select `Dev-Containers: Rebuild Container`
+
 ## License
 
 This repository is under an [MIT license](https://github.com/qdm12/rustdevcontainer/main/LICENSE) unless indicated otherwise.
