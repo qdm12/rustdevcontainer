@@ -82,7 +82,24 @@ RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/
 USER ${USERNAME}
 
 RUN rustup component add clippy rustfmt
-RUN cargo install cargo-binstall
+
+# Install cargo-binstall (a cargo subcommand that installs Rust binaries from
+# pre-compiled release archives rather than compiling them) from its own release
+# archive. Upstream ships statically linked binaries, so nothing is compiled here:
+# `cargo install cargo-binstall` costs six minutes on a native runner, and around an
+# hour under QEMU for a cross-built image. See https://github.com/cargo-bins/cargo-binstall
+ARG CARGO_BINSTALL_VERSION=1.26.0
+RUN set -eux && \
+    arch="$(uname -m)" && \
+    case "${arch}" in \
+    x86_64) target='x86_64-unknown-linux-musl' ;; \
+    aarch64) target='aarch64-unknown-linux-musl' ;; \
+    *) echo >&2 "unsupported architecture: ${arch}" && exit 1 ;; \
+    esac && \
+    wget -qO- "https://github.com/cargo-bins/cargo-binstall/releases/download/v${CARGO_BINSTALL_VERSION}/cargo-binstall-${target}.tgz" | \
+    tar -xz -C "${CARGO_HOME}/bin" && \
+    chmod 755 "${CARGO_HOME}/bin/cargo-binstall" && \
+    cargo-binstall -V
 
 # Shell setup
 COPY --chown="${USER_UID}:${USER_GID}" --chmod=644 shell/.zshrc-plugins shell/.welcome.sh ${USER_HOME}/
