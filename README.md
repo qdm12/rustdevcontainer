@@ -29,6 +29,7 @@ Rust development container for Visual Studio Code
 - Rust Analyzer 2026-10-12
 - Clippy
 - Rustfmt
+- cargo-binstall 1.26.0, to install Rust command line tools from pre-compiled binaries rather than compiling them: `cargo binstall ripgrep cargo-watch`
 - Alpine based with Docker tags `ghcr.io/qdm12/rustdevcontainer:latest` and `ghcr.io/qdm12/rustdevcontainer:alpine`
   - Compatible with `amd64` (2.1GB uncompressed image size)
   - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
