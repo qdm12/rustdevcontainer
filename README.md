@@ -26,18 +26,18 @@ Rust development container for Visual Studio Code
 ## Features
 
 - Rust 1.99.1
-- Rust Analyzer 2026-10-12
+- Rust Analyzer
 - Clippy
 - Rustfmt
 - cargo-binstall 1.26.0, to install Rust command line tools from pre-compiled binaries rather than compiling them: `cargo binstall ripgrep cargo-watch`
 - Alpine based with Docker tags `ghcr.io/qdm12/rustdevcontainer:latest` and `ghcr.io/qdm12/rustdevcontainer:alpine`
-  - Compatible with `amd64` (2.1GB uncompressed image size)
+  - Compatible with `amd64` (1.64GB uncompressed image size)
   - Based on [qmcgaw/basedevcontainer:alpine](https://github.com/qdm12/basedevcontainer)
     - Based on Alpine 3.24
     - Minimal custom terminal and packages
     - See more [features](https://github.com/qdm12/basedevcontainer#features)
 - Debian based with Docker tag `ghcr.io/qdm12/rustdevcontainer:debian`
-  - Compatible with `amd64` (2.08GB uncompressed image size) and `arm64` (1.96GB uncompressed image size)
+  - Compatible with `amd64` (1.62GB uncompressed image size) and `arm64` (1.5GB uncompressed image size)
   - Based on [qmcgaw/basedevcontainer:debian](https://github.com/qdm12/basedevcontainer)
     - Based on Debian Trixie
     - Minimal custom terminal and packages

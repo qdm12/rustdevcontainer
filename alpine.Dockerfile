@@ -74,14 +74,15 @@ RUN apk add --no-cache gcc && \
 # Install musl-dev required by some Rust tooling
 RUN apk add --no-cache musl-dev
 
-# Install Rust tooling
-ARG RUST_ANALYZER_VERSION=2026-10-12
-RUN wget -qO- "https://github.com/rust-analyzer/rust-analyzer/releases/download/${RUST_ANALYZER_VERSION}/rust-analyzer-$(uname -m)-unknown-linux-musl.gz" | \
-    gunzip > /usr/local/bin/rust-analyzer && \
-    chmod 755 /usr/local/bin/rust-analyzer
 USER ${USERNAME}
 
-RUN rustup component add clippy rustfmt
+# Install the Rust tooling shipped as rustup components. rust-analyzer belongs here: rustup
+# init already placed a rust-analyzer proxy in ${CARGO_HOME}/bin, which comes before
+# /usr/local/bin in PATH, so a standalone release binary sitting there is shadowed and every
+# call prints "`rust-analyzer` is unavailable for the active toolchain" before falling back
+# to it. The component version follows RUST_VERSION, and it is the same vintage as the
+# release archive used to be.
+RUN rustup component add clippy rust-analyzer rustfmt
 
 # Install cargo-binstall (a cargo subcommand that installs Rust binaries from
 # pre-compiled release archives rather than compiling them) from its own release
